@@ -31,21 +31,6 @@ const abrirFecharModalIncluir=()=>{
   setModalIncluir(!modalIncluir);
 }
 
-
-const pedidoPost=async()=>{
-  delete alunoSelecionado.id;
-  alunoSelecionado.idade=parseInt(alunoSelecionado.idade);
-    await axios.post(baseUrl, alunoSelecionado)
-  .then(response=>{
-    setData(data.concat(response.data));
-    abrirFecharModalIncluir();
-  }).catch(error=>{
-    console.log(error);
-  })
-}
-
-
-
   const alunosGet= async()=>{
     await axios.get(baseUrl)
     .then(response=>{
@@ -54,6 +39,20 @@ const pedidoPost=async()=>{
       console.log(error);
     })
   }
+
+  const pedidoPost=async()=>{
+    delete alunoSelecionado.id;
+    alunoSelecionado.idade=parseInt(alunoSelecionado.idade);
+      await axios.post(baseUrl, alunoSelecionado)
+    .then(response=>{
+      setData(data.concat(response.data));
+      abrirFecharModalIncluir();
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
+
+
 
   useEffect(()=>{
     alunosGet();
@@ -99,7 +98,7 @@ const pedidoPost=async()=>{
         <div className="form-group">
           <label>Nome: </label>
           <br />
-          <input type="text" className="form-control" name="nome"  onChange={handleChange}/>
+          <input type="text" className="form-control" nname="nome"  onChange={handleChange}/>
           <br />
           <label>Email: </label>
           <br />
