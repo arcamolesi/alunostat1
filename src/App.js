@@ -7,7 +7,7 @@ import logoCadastro from './assets/cadastro.png';
 
 function App() {
 
-  const baseUrl="https://localhost:7024/api/alunos";
+  const baseUrl="https://localhost:7024/api/Alunos";
   const [data, setData]=useState([]);
 
   const [modalEditar, setModalEditar]=useState(false);
@@ -43,7 +43,7 @@ function App() {
     setModalExcluir(!modalExcluir);
   }
 
-  const pedidoGet=async()=>{
+  const alunoGet=async()=>{
     await axios.get(baseUrl)
     .then(response=>{
       setData(response.data);
@@ -52,7 +52,7 @@ function App() {
     })
   }
 
-  const pedidoPost=async()=>{
+  const alunoPost=async()=>{
     delete alunoSelecionado.id;
     alunoSelecionado.idade=parseInt(alunoSelecionado.idade);
       await axios.post(baseUrl, alunoSelecionado)
@@ -101,7 +101,7 @@ function App() {
   }
 
   useEffect(()=>{
-    pedidoGet();
+    alunoGet();
   })
 
   return (
@@ -157,7 +157,7 @@ function App() {
         </div>
       </ModalBody>
       <ModalFooter>
-        <button className="btn btn-primary" onClick={()=>pedidoPost()}>Incluir</button>{"   "}
+        <button className="btn btn-primary" onClick={()=>alunoPost()}>Incluir</button>{"   "}
         <button className="btn btn-danger" onClick={()=>abrirFecharModalIncluir()}>Cancelar</button>
       </ModalFooter>
     </Modal>
